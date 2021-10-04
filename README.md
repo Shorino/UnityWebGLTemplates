@@ -3,7 +3,7 @@
 ## Description
 This is a modified version of unity default minimal webgl template, 
 it was made in Unity 2020.3.11f and i copy the default minimal template 
-from here <Unity Installation>/PlaybackEngines/WebGLSupport/BuildTools/WebGLTemplates/
+from here <Unity Installation>/PlaybackEngines/WebGLSupport/BuildTools/WebGLTemplates/Minimal
 
 ##Sauce
 Unity Docs https://docs.unity3d.com/Manual/webgl-templates.html

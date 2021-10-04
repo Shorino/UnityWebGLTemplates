@@ -3,10 +3,10 @@
 ## Description
 This is a modified version of unity default minimal webgl template, 
 it was made in Unity 2020.3.11f and i copy the default minimal template 
-from here <Unity Installation>/PlaybackEngines/WebGLSupport/BuildTools/WebGLTemplates/Minimal
+from here <Unity Installation>/PlaybackEngines/WebGLSupport/BuildTools/WebGLTemplates/
 
-##Sauce
-Unity Docs https://docs.unity3d.com/Manual/webgl-templates.html
+## Sauce
+Unity Docs: https://docs.unity3d.com/Manual/webgl-templates.html
 
 ## Features
 1. Removed unity default template's border, everything fit nicely inside browser's viewport

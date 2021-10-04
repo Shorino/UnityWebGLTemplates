@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{{{ PRODUCT_NAME }}}</title>
+</head>
+
+<body style="text-align: center; background-color: #000; margin: 0%;">
+  <canvas id="unity-canvas" style="display: block;" class="unity-desktop"></canvas>
+  <script src="Build/{{{ LOADER_FILENAME }}}"></script>
+  <script>
+    const canvas = document.querySelector("#unity-canvas");
+    const config = {
+      dataUrl: "Build/{{{ DATA_FILENAME }}}",
+      frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+      codeUrl: "Build/{{{ CODE_FILENAME }}}",
+      #if MEMORY_FILENAME
+        memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+      #endif
+      #if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+      #endif
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "{{{ COMPANY_NAME }}}",
+      productName: "{{{ PRODUCT_NAME }}}",
+      productVersion: "{{{ PRODUCT_VERSION }}}",
+      // matchWebGLToCanvasSize: true, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+      // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+    }
+
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      canvas.className = "unity-mobile";
+      config.devicePixelRatio = 1;
+    }
+
+    createUnityInstance(canvas, config)
+      .then(instance => {
+        function onResize() {
+          const fixedAspectRatio = "{{{ FIXED_ASPECT_RATIO }}}";
+          var w = window.innerWidth;
+          var h = window.innerHeight;
+
+          if (fixedAspectRatio) {
+            const defaultRatio = {{{ HEIGHT }}} / {{{ WIDTH }}};
+            const currentRatio = h / w;
+
+            if (defaultRatio > currentRatio) {
+              w = h / defaultRatio;
+            }
+            else {
+              h = w * defaultRatio;
+            }
+
+            const marginHorizontal = (window.innerHeight - h) / 2;
+            const marginVertical = (window.innerWidth - w) / 2;
+            canvas.style.marginTop = marginHorizontal + "px";
+            canvas.style.marginBottom = marginHorizontal + "px";
+            canvas.style.marginLeft = marginVertical + "px";
+            canvas.style.marginRight = marginVertical + "px";
+          }
+
+          canvas.style.width = w + "px";
+          canvas.style.height = h + "px";
+        }
+        window.addEventListener('resize', onResize);
+        onResize();
+      });
+  </script>
+</body>
+
+</html>
